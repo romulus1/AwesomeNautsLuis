@@ -270,6 +270,7 @@ game.EnemyCreep = me.Entity.extend({
         this.renderable.setCurrentAnimation("walk");
 
     },
+    
     //makes enemy creep killable
     loseHealth: function(damage) {
         this.heath = this.health - damage;
