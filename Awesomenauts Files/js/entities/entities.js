@@ -54,6 +54,8 @@ game.PlayerEntity = me.Entity.extend({
     update: function(delta) {
         this.now = new Date().getTime();
         
+        this.dead = checkIfDead();
+        
         if (this.health <= 0) {
             this.dead = true;
             // this.pos.x = 10;
@@ -107,6 +109,13 @@ game.PlayerEntity = me.Entity.extend({
         return true;
 
     },
+    
+    checkIfDead: function(){
+        if(this.health <= 0){
+            this.dead = true;
+        }
+    },
+    
     loseHealth: function(damage) {
         this.health = this.health - damage;
         console.log(this.health);
