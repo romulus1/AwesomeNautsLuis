@@ -15,7 +15,7 @@ game.PlayerEntity = me.Entity.extend({
     
     setSuper: function(x, y) {
         this._super(me.Entity, 'init', [x, y, {
-                //makes sure that the sprite works
+                //all dis makes sure that the sprite works
                 image: "player",
                 width: 64,
                 height: 64,
@@ -36,7 +36,7 @@ game.PlayerEntity = me.Entity.extend({
     setAttributes: function() {
         this.health = game.data.playerHealth;
         this.body.setVelocity(game.data.playerMoveSpeed, 20);//sets the velocity for the key binded
-        this.attack = game.data.playerAttack;
+      this.attack = game.data.playerAttack;
     },
     
     setFlags: function() {
@@ -212,6 +212,4 @@ game.PlayerEntity = me.Entity.extend({
         }
         response.b.loseHealth(game.data.playerAttack);
     }
-
-
 });
