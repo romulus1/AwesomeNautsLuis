@@ -32,26 +32,22 @@ game.PlayerEntity = me.Entity.extend({
         this.lastHit = this.now;
         this.lastAttack = new Date().getTime(); //Havent used this
     },
-    
     setAttributes: function() {
         this.health = game.data.playerHealth;
         this.body.setVelocity(game.data.playerMoveSpeed, 20);//sets the velocity for the key binded
-      this.attack = game.data.playerAttack;
+        this.attack = game.data.playerAttack;
     },
-    
     setFlags: function() {
         //keeps track of what direction your character is going
         this.facing = "right";
         this.dead = false;
         this.attakcing = false;
     },
-    
     addAnimation: function() {
         this.renderable.addAnimation("idle", [78]);
         this.renderable.addAnimation("walk", [117, 118, 119, 120, 121, 123, 124, 125], 80);
         this.renderable.addAnimation("attack", [65, 66, 67, 68, 69, 70, 71, 72], 80);
     },
-    
     update: function(delta) {
         this.now = new Date().getTime();
         this.dead = this.checkIfDead();
@@ -61,7 +57,6 @@ game.PlayerEntity = me.Entity.extend({
         this.body.update(delta);//updates the isKeyPressed()
         this._super(me.Entity, "update", [delta]);
         return true;
-
     },
     
     checkIfDead: function() {
@@ -89,7 +84,6 @@ game.PlayerEntity = me.Entity.extend({
         }
         this.attacking = me.input.isKeyPressed("attack");
     },
-    
     moveRight: function() {
         //adds to the position of my x by the velocity defined above in setVelocity() and multaplying it by me.timer.tick
         //me.timer.tick makes the movement look smooth
@@ -97,18 +91,15 @@ game.PlayerEntity = me.Entity.extend({
         this.flipX(true);
         this.facing = "right";
     },
-    
     moveLeft: function() {
         this.facing = "left";
         this.body.vel.x -= this.body.accel.x * me.timer.tick;
         this.flipX(false);
     },
-    
     jump: function() {
         this.body.vel.y = -this.body.accel.y * me.timer.tick;
         this.body.jumping = true;
     },
-    
     setAnimation: function() {
         //two of the attack if/else makes the animation smoother
         if (this.attacking) {
@@ -134,12 +125,8 @@ game.PlayerEntity = me.Entity.extend({
         this.health = this.health - damage;
         console.log(this.health);
         if (this.health <= 0) {
-            if (confirm("You died, retry?") == true) {
-                this.dead = true;
-                me.game.world.removeChild(this);
-            } else {
-                window.alert("3:");
-            }
+            this.dead = true;
+            me.game.world.removeChild(this);
         }
     },
     
@@ -150,7 +137,6 @@ game.PlayerEntity = me.Entity.extend({
             this.collideWithEnemyCreep(response);
         }
     },
-    
     collideWithEnemyBase: function(response) {
         var ydif = this.pos.y - response.b.pos.y;
         var xdif = this.pos.x - response.b.pos.x;
@@ -167,6 +153,7 @@ game.PlayerEntity = me.Entity.extend({
 
         if (this.renderable.isCurrentAnimation("attack") && this.now - this.lastHit >= game.data.playerAttackTimer) {
             console.log("tower Hit");
+            me.save.exp = game.data.exp + 10;
             this.lastHit = this.now;
             response.b.loseHealth(game.data.playerAttack);
         }
@@ -212,4 +199,6 @@ game.PlayerEntity = me.Entity.extend({
         }
         response.b.loseHealth(game.data.playerAttack);
     }
+
+
 });

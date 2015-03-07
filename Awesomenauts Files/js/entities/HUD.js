@@ -47,7 +47,6 @@ game.HUD.ScoreItem = me.Renderable.extend({
         // make sure we use screen coordinates
         this.floating = true;
     },
-    
     /**
      * update function
      */
@@ -65,7 +64,7 @@ game.HUD.ScoreItem = me.Renderable.extend({
      * draw the score
      */
     draw: function(context) {
-
+        // draw it baby !
     }
 
 });

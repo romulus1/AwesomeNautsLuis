@@ -20,7 +20,6 @@ game.PlayerBaseEntity = me.Entity.extend({
         this.renderable.addAnimation("idle", [0]);
         this.renderable.addAnimation("broken", [1]);
         this.renderable.setCurrentAnimation("idle");
-
     },
     
     update: function(delta) {
@@ -42,4 +41,5 @@ game.PlayerBaseEntity = me.Entity.extend({
     onCollision: function() {
 
     }
+
 });

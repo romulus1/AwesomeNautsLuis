@@ -26,8 +26,10 @@ game.EnemyBaseEntity = me.Entity.extend({
         if (this.health <= 0) {
             this.broken = true;
             this.renderable.setCurrentAnimation("broken");
+            me.save.exp = game.data.exp + 1;
         }
         this.body.update(delta);
+
 
         this._super(me.Entity, "update", [delta]);
         return true;
@@ -40,4 +42,5 @@ game.EnemyBaseEntity = me.Entity.extend({
     loseHealth: function() {
         this.health--;
     }
+
 });
