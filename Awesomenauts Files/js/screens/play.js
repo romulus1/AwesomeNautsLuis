@@ -19,8 +19,8 @@ game.PlayScreen = me.ScreenObject.extend({
         var heroDeathManager = me.pool.pull("HeroDeathManager", 0, 0, {});
         me.game.world.addChild(HeroDeathManager, 0);
         
-        me.input.bindKey(me.input.KEY.RIGHT, "right");//this binds the right key
-        me.input.bindKey(me.input.KEY.LEFT, "left");//this binds the left key
+        me.input.bindKey(me.input.KEY.RIGHT, "right");// binds the right key
+        me.input.bindKey(me.input.KEY.LEFT, "left");// binds the left key
         me.input.bindKey(me.input.KEY.A, "attack");
         me.input.bindKey(me.input.KEY.SPACE, "jump");
 

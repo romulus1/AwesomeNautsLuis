@@ -60,7 +60,8 @@ game.MyCreep = me.Entity.extend({
                 //makes the player base call its loseHealth	function and passes it a damage of 1
                 response.b.loseHealth(game.data.myCreepAttack);
             }
-        } else if (response.b.type === 'EnemyCreep') {
+        } 
+        else if (response.b.type === 'EnemyCreep') {
             var xdif = this.pos.x - response.b.pos.x;
             this.attacking = true;
             //this.lastAttacking = this.now;

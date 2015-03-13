@@ -179,7 +179,8 @@ game.PlayerEntity = me.Entity.extend({
             if (this.facing === "left") {
                 this.body.vel.x = 0;
             }
-        } else {
+        } 
+        else {
             if (this.facing === "right") {
                 this.body.vel.x = 0;
             }
