@@ -9,7 +9,6 @@ game.EnemyBaseEntity = me.Entity.extend({
                 getShape: function() {
                     return (new me.Rect(0, 0, 100, 70)).toPolygon();
                 }
-
             }]);
         this.broken = false;
         this.health = game.data.enemyBaseHealth;

@@ -60,6 +60,7 @@ game.HUD.ScoreItem = me.Renderable.extend({
         }
         return false;
     },
+    
     /**
      * draw the score
      */
