@@ -25,6 +25,7 @@ game.MyCreep = me.Entity.extend({
         this.renderable.addAnimation("walk", [0, 1, 2, 3, 4], 80);
         this.renderable.setCurrentAnimation("walk");
     },
+    
     loseHealth: function(damage) {
         this.health = this.health - damage;
         if (this.health <= 0) {
@@ -43,8 +44,8 @@ game.MyCreep = me.Entity.extend({
 
         this._super(me.Entity, "update", [delta]);
         return true;
-
     },
+  
     collideHandler: function(response) {
         if (response.b.type === 'EnemyBaseEntity') {
             this.attacking = true;

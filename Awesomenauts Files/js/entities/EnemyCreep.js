@@ -10,7 +10,6 @@ game.EnemyCreep = me.Entity.extend({
                     return (new me.Rect(0, 0, 32, 64)).toPolygon();
                 }
             }]);
-        
         this.health = game.data.enemyCreepHealth;
         this.alwaysUpdate = true;
         //this.attacking lets us know if the enemy is currently attacking
@@ -32,7 +31,7 @@ game.EnemyCreep = me.Entity.extend({
     },
     
     update: function(delta) {
-        //console.log(this.health);
+        console.log(this.health);
         if (this.health <= 0) {
             me.game.world.removeChild(this);
         }
@@ -43,8 +42,8 @@ game.EnemyCreep = me.Entity.extend({
 
         this._super(me.Entity, "update", [delta]);
         return true;
-
     },
+    
     collideHandler: function(response) {
         if (response.b.type === 'PlayerBase') {
             this.attacking = true;
@@ -66,7 +65,7 @@ game.EnemyCreep = me.Entity.extend({
             //this.body.vel.x = 0;
             //keeps moving the creep to the right to maintain its position
             if (xdif > 0) {
-                //console.log(xdif);
+                console.log(xdif);
                 //keeps moving the creep to the right to maintain its position
                 this.pos.x = this.pos.x + 1;
                 this.body.vel.x = 0;

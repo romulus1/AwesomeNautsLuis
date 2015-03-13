@@ -57,8 +57,8 @@ game.PlayerEntity = me.Entity.extend({
         this.body.update(delta);//updates the isKeyPressed()
         this._super(me.Entity, "update", [delta]);
         return true;
+
     },
-    
     checkIfDead: function() {
         if (this.health <= 0) {
             return true;
@@ -68,7 +68,6 @@ game.PlayerEntity = me.Entity.extend({
         }
         return false;
     },
-    
     checkKeyPressesAndMove: function() {
         if (me.input.isKeyPressed("right")) {
             this.moveRight();
@@ -84,6 +83,7 @@ game.PlayerEntity = me.Entity.extend({
         }
         this.attacking = me.input.isKeyPressed("attack");
     },
+    
     moveRight: function() {
         //adds to the position of my x by the velocity defined above in setVelocity() and multaplying it by me.timer.tick
         //me.timer.tick makes the movement look smooth
@@ -91,15 +91,18 @@ game.PlayerEntity = me.Entity.extend({
         this.flipX(true);
         this.facing = "right";
     },
+    
     moveLeft: function() {
         this.facing = "left";
         this.body.vel.x -= this.body.accel.x * me.timer.tick;
         this.flipX(false);
     },
+    
     jump: function() {
         this.body.vel.y = -this.body.accel.y * me.timer.tick;
         this.body.jumping = true;
     },
+    
     setAnimation: function() {
         //two of the attack if/else makes the animation smoother
         if (this.attacking) {
@@ -120,16 +123,18 @@ game.PlayerEntity = me.Entity.extend({
             this.renderable.setCurrentAnimation("idle");
         }
     },
-    
     loseHealth: function(damage) {
         this.health = this.health - damage;
         console.log(this.health);
         if (this.health <= 0) {
-            this.dead = true;
-            me.game.world.removeChild(this);
+            if (confirm("You died, retry?") == true) {
+                this.dead = true;
+                me.game.world.removeChild(this);
+            } else {
+                window.alert("3:");
+            }
         }
     },
-    
     collideHandler: function(response) {
         if (response.b.type === 'EnemyBaseEntity') {
             this.collideWithEnemyBase(response);
@@ -153,7 +158,6 @@ game.PlayerEntity = me.Entity.extend({
 
         if (this.renderable.isCurrentAnimation("attack") && this.now - this.lastHit >= game.data.playerAttackTimer) {
             console.log("tower Hit");
-            me.save.exp = game.data.exp + 10;
             this.lastHit = this.now;
             response.b.loseHealth(game.data.playerAttack);
         }

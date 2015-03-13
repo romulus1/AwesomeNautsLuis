@@ -20,16 +20,15 @@ game.EnemyBaseEntity = me.Entity.extend({
         this.renderable.addAnimation("idle", [0]);
         this.renderable.addAnimation("broken", [1]);//this holds the animation to be used later
         this.renderable.setCurrentAnimation("idle");//renderable is a class in melon js that helps us in animating the character
+
     },
     
     update: function(delta) {
         if (this.health <= 0) {
             this.broken = true;
             this.renderable.setCurrentAnimation("broken");
-            me.save.exp = game.data.exp + 1;
         }
         this.body.update(delta);
-
 
         this._super(me.Entity, "update", [delta]);
         return true;

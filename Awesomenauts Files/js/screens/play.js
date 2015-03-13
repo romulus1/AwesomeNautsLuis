@@ -17,15 +17,12 @@ game.PlayScreen = me.ScreenObject.extend({
         me.game.world.addChild(gameTimerManager, 0);
 
         var heroDeathManager = me.pool.pull("HeroDeathManager", 0, 0, {});
-        me.game.world.addChild(heroDeathManager, 0);
-
-        var experienceManager = me.pool.pull("ExperienceManager", 0, 0, {});
-        me.game.world.addChild(experienceManager, 0);
-
-        me.input.bindKey(me.input.KEY.D, "right");//this binds the right key
-        me.input.bindKey(me.input.KEY.A, "left");//this binds the left key
-        me.input.bindKey(me.input.KEY.F, "attack");
-        me.input.bindKey(me.input.KEY.W, "jump");
+        me.game.world.addChild(HeroDeathManager, 0);
+        
+        me.input.bindKey(me.input.KEY.RIGHT, "right");//this binds the right key
+        me.input.bindKey(me.input.KEY.LEFT, "left");//this binds the left key
+        me.input.bindKey(me.input.KEY.A, "attack");
+        me.input.bindKey(me.input.KEY.SPACE, "jump");
 
         // add our HUD to the game world
         this.HUD = new game.HUD.Container();
